@@ -1,0 +1,19 @@
+{
+  "name": "api-rest-consumption-movies",
+  "version": "1.0.0",
+  "description": "Fully functional movie search engine thanks to The Movie DB API.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EduardoLizarazu/api-rest-consumption-movies.git"
+  },
+  "author": "eduardolizarazu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EduardoLizarazu/api-rest-consumption-movies/issues"
+  },
+  "homepage": "https://github.com/EduardoLizarazu/api-rest-consumption-movies#readme"
+}
