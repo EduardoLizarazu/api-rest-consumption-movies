@@ -4,6 +4,8 @@
   "description": "Fully functional movie search engine thanks to The Movie DB API.",
   "main": "index.html",
   "scripts": {
+    "start": "live-server",
+    "sass": "node-sass styles/scss/main.scss styles/css/main.css -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/EduardoLizarazu/api-rest-consumption-movies/issues"
   },
-  "homepage": "https://github.com/EduardoLizarazu/api-rest-consumption-movies#readme"
+  "homepage": "https://github.com/EduardoLizarazu/api-rest-consumption-movies#readme",
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "node-sass": "^7.0.1"
+  }
 }
