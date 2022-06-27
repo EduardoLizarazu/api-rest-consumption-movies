@@ -1,0 +1,50 @@
+
+$primary-color : #F1EEF5;
+$second-color : #090911;
+$brand-color : #F34096;
+
+$family-font : 'Lato', 'sans-serif';
+
+@mixin max-title {
+    font-family: $family-font;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 9.6rem;
+    line-height: 11.5rem;
+    color: $primary-color;
+}
+@mixin title {
+    font-family: $family-font;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 6.4rem;
+    line-height: 7.7rem;
+    color: $primary-color;
+}
+@mixin sub-title {
+    font-family: $family-font;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 3.2rem;
+    line-height: 3.8rem;
+    color: $primary-color;
+}
+@mixin content {
+    font-family: $family-font;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2.0rem;
+    line-height: 2.4rem;
+    color: $primary-color;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-size: 62.5%;
+    
+}
