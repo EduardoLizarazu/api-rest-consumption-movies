@@ -5,3 +5,43 @@
 
 html {
   font-size: 62.5%; }
+
+li {
+  list-style: none; }
+
+a {
+  text-decoration: none;
+  color: #090911; }
+
+.header {
+  position: sticky;
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 30px;
+  height: 73.5px;
+  width: 100%;
+  background: green; }
+
+.logo-section {
+  margin-left: 30px; }
+  .logo-section .logo {
+    display: inline-block;
+    height: auto; }
+    .logo-section .logo img {
+      height: 35px; }
+
+nav {
+  margin-right: 30px; }
+  nav .nav-container {
+    display: flex;
+    gap: 30px; }
+    nav .nav-container .nav-item a {
+      height: auto;
+      display: inline-block;
+      height: auto; }
+      nav .nav-container .nav-item a img {
+        height: 25px; }
