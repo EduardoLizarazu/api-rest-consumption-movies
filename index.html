@@ -1,77 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movies</title>
-    <link rel="stylesheet" href="./styles/css/main.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@700;800&family=Red+Hat+Display:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles/app.css" />
+
+  <title>PlatziMovies</title>
 </head>
 <body>
-    <!-- https://www.figma.com/file/lH4SrSCUtvTxUG3JIcLWDm/movies-website?node-id=27%3A298 -->
-    <header class="header">
-        <section class="logo-section">
-            <a href="#home" class="logo">
-                <img src="./Assets/logo/Logo.svg" alt="logo">
-            </a>
-        </section>
-        <nav>
-            <ul class="nav-container">
-                <li class="nav-item">
-                    <a href="#home">
-                        <img src="./Assets/logo/Home.svg" alt="home">
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#notification">
-                        <img src="./Assets/logo/Bell.svg" alt="notification">
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#search">
-                        <img src="./Assets/logo/Search.svg" alt="search">
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#profile">
-                        <img src="./Assets/logo/User.svg" alt="profile">
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    <section class="banner-container">
-        <img src="" alt="banner" class="banner-image">
-        <button>Play</button>
-        <h2>Peaky Blinders</h2>
-    </section>
-    <section class="popular-container">
-        <h2>Popular</h2>
-        <article class="card-movie">
-            <img src="" alt="movie">
-            <div class="card-details">
-                <p>Stranger Things</p>
-                <span>2022</span>
-                <span><img src="" alt="watched"></span>
-                <span><img src="" alt="star"></span>
-            </div>
-        </article>
-        <article class="card-movie">
-            <img src="" alt="movie">
-            <div class="card-details">
-                <p>Stranger Things</p>
-                <span>2022</span>
-                <span><img src="" alt="watched"></span>
-                <span><img src="" alt="star"></span>
-            </div>
-        </article>
-        <button>See More</button>
-    </section>
+  <header id="header" class="header-container">
+    <span class="header-arrow inactive">&lt;</span>
+    <h1 class="header-title">PlatziMovies</h1>
+    <h1 class="header-title header-title--categoryView inactive">Acción</h1>
 
+    <form id="searchForm" class="header-searchForm">
+      <input type="text" placeholder="Vengadores" />
+      <button>🔍</button>
+    </form>
+  </header>
 
-    <script src="./src/main.js"></script>
+  <section id="trendingPreview" class="trendingPreview-container">
+    <div class="trendingPreview-header">
+      <h2 class="trendingPreview-title">Tendencias</h2>
+      <button class="trendingPreview-btn">Ver más</button>
+    </div>
+
+    <article class="trendingPreview-movieList">
+      <div class="movie-container">
+        <img
+          src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
+          class="movie-img"
+          alt="Nombre de la película"
+        />
+      </div>
+
+      <div class="movie-container">
+        <img
+          src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
+          class="movie-img"
+          alt="Nombre de la película"
+        />
+      </div>
+
+      <div class="movie-container">
+        <img
+          src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
+          class="movie-img"
+          alt="Nombre de la película"
+        />
+      </div>
+    </article>
+  </section>
+
+  <section id="categoriesPreview" class="categoriesPreview-container">
+    <h2 class="categoriesPreview-title">Categorías</h2>
+
+    <article class="categoriesPreview-list">
+      <div class="category-container">
+        <h3 id="id28" class="category-title">Romance</h3>
+      </div>
+
+      <div class="category-container">
+        <h3 id="id16" class="category-title">Drama</h3>
+      </div>
+
+      <div class="category-container">
+        <h3 id="id14" class="category-title">Acción</h3>
+      </div>
+    </article>
+  </section>
+
+  <section id="genericList" class="genericList-container inactive">
+    <div class="movie-container">
+      <img
+        src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
+        class="movie-img"
+        alt="Nombre de la película"
+      />
+    </div>
+
+    <div class="movie-container">
+      <img
+        src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
+        class="movie-img"
+        alt="Nombre de la película"
+      />
+    </div>
+
+    <div class="movie-container">
+      <img
+        src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
+        class="movie-img"
+        alt="Nombre de la película"
+      />
+    </div>
+  </section>
+
+  <section id="movieDetail" class="movieDetail-container inactive">
+    <h1 class="movieDetail-title">Deadpool</h1>
+    <span class="movieDetail-score">7.6</span>
+    <p class="movieDetail-description">
+      Wisecracking mercenary Deadpool battles the evil and powerful Cable and other bad guys to save a boy's life.
+    </p>
+
+    <article class="categories-list">
+      <div class="category-container">
+        <h3 id="id28" class="category-title">Romance</h3>
+      </div>
+
+      <div class="category-container">
+        <h3 id="id16" class="category-title">Drama</h3>
+      </div>
+
+      <div class="category-container">
+        <h3 id="id14" class="category-title">Acción</h3>
+      </div>
+    </article>
+
+    <article class="relatedMovies-container">
+      <h2 class="relatedMovies-title">Películas similares</h2>
+
+      <div class="relatedMovies-scrollContainer">
+        <div class="movie-container">
+          <img
+            src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
+            class="movie-img"
+            alt="Nombre de la película"
+          />
+        </div>
+        
+        <div class="movie-container">
+          <img
+            src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
+            class="movie-img"
+            alt="Nombre de la película"
+          />
+        </div>
+        
+        <div class="movie-container">
+          <img
+            src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
+            class="movie-img"
+            alt="Nombre de la película"
+          />
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <footer>Hecho con amor en Platzi por @juandc</footer>
+  
+  <script src="./src/secrets.js"></script>
+  <script src="./src/main.js"></script>
 </body>
 </html>
