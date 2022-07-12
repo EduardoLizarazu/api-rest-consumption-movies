@@ -1,6 +1,6 @@
 
 searchFormBtn.addEventListener("click", () => {
-    location.hash = '#search=';
+    location.hash = '#search=' + searchFormInput.value;
 });
 trendingBtn.addEventListener("click", () => {
     location.hash = '#trends';
@@ -81,6 +81,11 @@ function searchPage() {
     categoriesPreviewSection.classList.add('inactive');
     genericSection.classList.remove('inactive');
     movieDetailSection.classList.add('inactive');
+
+
+    // ['#search', 'searchedValue']
+    const [_, query] = location.hash.split('=');
+    getMoviesBySearch(query)
 }
 function movieDetailsPage() {
     console.log('Movie!!!');
