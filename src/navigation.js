@@ -26,6 +26,9 @@ function navigator() {
     } else {
         homePage();
     }
+    // scroll Top, en algunos navegadores no funciana
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
 }
 
 
