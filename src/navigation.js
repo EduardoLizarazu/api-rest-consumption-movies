@@ -5,8 +5,19 @@ searchFormBtn.addEventListener("click", () => {
 trendingBtn.addEventListener("click", () => {
     location.hash = '#trends';
 });
+window.addEventListener('DOMContentLoaded', () => {
+        // Agregando un estado de carga inical
+        window.history.pushState({ loadUrl: window.location.href }, null, '');
+    },
+    false,
+);
 arrowBtn.addEventListener("click", () => {
-    location.hash = '#home';
+    const stateLoad = window.history.state ? window.history.state.loadUrl : '';
+    if (stateLoad.includes('#')) {
+        window.location.hash = '';
+    } else {
+        window.history.back();
+    }
 });
 
 window.addEventListener('DOMContentLoaded', navigator, false);
@@ -65,6 +76,10 @@ function trendsPage() {
     categoriesPreviewSection.classList.add('inactive');
     genericSection.classList.remove('inactive');
     movieDetailSection.classList.add('inactive');
+
+    headerCategoryTitle.innerHTML = "Trending"
+
+    getTrendingMovies();
 }
 function searchPage() {
     console.log('Search!!!');
