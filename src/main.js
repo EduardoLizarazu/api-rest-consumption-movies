@@ -107,22 +107,30 @@ async function getMovieById(id) {
 
     // Renombramos
     const { data : movie } = await api('movie/' + id);
-
+    
     const movieImgUrl = 'http://image.tmdb.org/t/p/w500/' + movie.poster_path;
-
+    
     headerSection.style.background = `
     linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0.35) 19.27%,
-      rgba(0, 0, 0, 0) 29.17%
-    ),
-    url(${movieImgUrl})
-  `;
+        180deg,
+        rgba(0, 0, 0, 0.35) 19.27%,
+        rgba(0, 0, 0, 0) 29.17%
+        ),
+        url(${movieImgUrl})
+        `;
+        
+        movieDetailTitle.textContent = movie.title;
+        movieDetailDescription.textContent = movie.overview;
+        movieDetailScore.textContent = movie.vote_average;
+        
+        createCategory(movie.genres, movieDetailCategoriesList);
+        getRelatedMoviesId(id);
+    }
+    
+async function getRelatedMoviesId(id) {
+    const { data } = await api(`movie/${id}/recommendations`);
+    const relatedMovies = data.results;
 
-    movieDetailTitle.textContent = movie.title;
-    movieDetailDescription.textContent = movie.overview;
-    movieDetailScore.textContent = movie.vote_average;
-
-    createCategory(movie.genres, movieDetailCategoriesList);
-
+    createMovies(relatedMovies, relatedMoviesContainer);
+    relatedMoviesContainer.scrollTo(0, 0);
 }
