@@ -11,7 +11,21 @@ const api = axios.create({
 
 // Utils
 
-function createMovies(movies, container) {
+// No ponemos options, porque por defecto nos va a observar todo el documento
+const lazyLoading = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            // const url = movieImg.getAttribute('data-src');
+            const url = entry.target.getAttribute('data-src')
+            // movieImg.setAttribute('src', url);
+            entry.target.setAttribute('src', url);
+            // observer.unobserve(entry.target); Undefine la segunda ?
+        }
+    });
+});
+
+// SI no queremos que tenga lazyloading
+function createMovies(movies, container, lazyLoad = false) {
     container.innerHTML = "";
     movies.forEach(movie => {
 
@@ -26,7 +40,13 @@ function createMovies(movies, container) {
         const movieImg = document.createElement('img');
         movieImg.classList.add('movie-img');
         movieImg.setAttribute('alt', movie.title);
-        movieImg.setAttribute('src', 'http://image.tmdb.org/t/p/w300/' + movie.poster_path);
+        movieImg.setAttribute(
+            lazyLoad ? 'data-src' : 'src', 
+            'http://image.tmdb.org/t/p/w300/' + movie.poster_path
+        );
+
+        // Observe
+        lazyLoad && lazyLoading.observe(movieImg);
 
         movieContainer.appendChild(movieImg);
         container.appendChild(movieContainer);
@@ -63,7 +83,7 @@ async function getTrendingMoviesPreview() {
     const { data } = await api('trending/all/day');
     const movies = data.results;
 
-    createMovies(movies, trendingMoviesPreviewList);
+    createMovies(movies, trendingMoviesPreviewList, true);
 }
 
 async function getCategoriesMoviesPreview() {
