@@ -136,6 +136,9 @@ async function getTrendingMovies() {
 
 let page = 1;
 async function getPaginatedTrendingMovies() {
+
+    genericSection.querySelector("button") &&  genericSection.querySelector("button").remove();
+
     page++;
     const { data } = await api('trending/all/day', {
         params: {
