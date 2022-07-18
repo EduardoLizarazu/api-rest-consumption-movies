@@ -61,7 +61,13 @@ function navigator() {
     // Le agregamo lo que haya agarrado la funcion que haya agarrado la var
     // en la navegacion y la agregamos al event listener
     infiniteScroll && window.addEventListener("scroll", infiniteScroll, { passive: false });
-
+    
+    // En la navegación, cada vez que se añade el evento del scroll con la 
+    // funcion de paginación a ejecutar, se debería de devolver la page = 1,
+    // para limpiar la variable de las posibles navegaciones que se realicen 
+    //en otras secciones, con esto aseguramos que el endpoint que se vaya a 
+    // ejecutar cargue de la página 1++.
+    page =1;
 }
 
 
@@ -125,7 +131,14 @@ function searchPage() {
 
     // ['#search', 'searchedValue']
     const [_, query] = location.hash.split('=');
-    getMoviesBySearch(query)
+    getMoviesBySearch(query);
+
+    // Closure: 
+    // Habia un problema con el parametro, ya que la funcion ya se enviaba ejecutada,
+    // el listening ya resivia solo el return que era en su caso null.
+    // Para solucionarlo, en la funcion hacemos un return de nuestra funcion
+    // asincrona que es la que queremos que se ejecute
+    infiniteScroll = getPaginatedMoviesBySearch(query);
 }
 function movieDetailsPage() {
     console.log('Movie!!!');
@@ -171,5 +184,7 @@ function categoriesPage() {
     headerCategoryTitle.innerHTML = categoryName;
 
     getMoviesByCategory(categoryId);
+
+    infiniteScroll = getPaginatedMoviesByCategory(categoryId);
 }
 
