@@ -1,3 +1,6 @@
+// Max page
+let maxPage;
+
 // Decide the page for the api
 let page = 1;
 let infiniteScroll;

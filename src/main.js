@@ -125,6 +125,9 @@ async function getTrendingMovies() {
     const { data } = await api('trending/all/day');
     const movies = data.results;
 
+    // Max Pages
+    maxPage = data.total_pages;
+
     createMovies(movies, genericSection, { lazyLoad: true, clean: true });
     
     // const btnLoadMore = document.createElement("button");
@@ -147,7 +150,10 @@ async function getPaginatedTrendingMovies() {
 
     const scrollIsButton = (scrollTop + clientHeight) >= (scrollHeight - 15);
 
-    if (scrollIsButton) {
+    // Quiero que mi pagina no sea la maxima a la que podemos llegar
+    const pageIsNotMax = page < maxPage
+
+    if (scrollIsButton && pageIsNotMax) {
         page++;
         const { data } = await api('trending/all/day', {
             params: {
