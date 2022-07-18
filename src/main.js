@@ -127,32 +127,43 @@ async function getTrendingMovies() {
 
     createMovies(movies, genericSection, { lazyLoad: true, clean: true });
     
-    const btnLoadMore = document.createElement("button");
-    btnLoadMore.innerHTML = 'Cargar mas';
-    btnLoadMore.addEventListener("click", getPaginatedTrendingMovies);
-    genericSection.appendChild(btnLoadMore);
+    // const btnLoadMore = document.createElement("button");
+    // btnLoadMore.innerHTML = 'Cargar mas';
+    // btnLoadMore.addEventListener("click", getPaginatedTrendingMovies);
+    // genericSection.appendChild(btnLoadMore);
 
 }
 
-let page = 1;
 async function getPaginatedTrendingMovies() {
+    
+    // Remove the create button bellow
+    // genericSection.querySelector("button") &&  genericSection.querySelector("button").remove();
 
-    genericSection.querySelector("button") &&  genericSection.querySelector("button").remove();
+    const { 
+        scrollTop, 
+        scrollHeight, 
+        clientHeight 
+    } = document.documentElement;
 
-    page++;
-    const { data } = await api('trending/all/day', {
-        params: {
-            page,
-        },
-    });
-    const movies = data.results;
+    const scrollIsButton = (scrollTop + clientHeight) >= (scrollHeight - 15);
 
-    createMovies(movies, genericSection, { lazyLoad: true, clean: false });
+    if (scrollIsButton) {
+        page++;
+        const { data } = await api('trending/all/day', {
+            params: {
+                page,
+            },
+        });
 
-    const btnLoadMore = document.createElement("button");
-    btnLoadMore.innerHTML = 'Cargar mas';
-    btnLoadMore.addEventListener("click", getPaginatedTrendingMovies);
-    genericSection.appendChild(btnLoadMore);
+        const movies = data.results;
+
+        createMovies(movies, genericSection, { lazyLoad: true, clean: false });
+    }
+
+    // const btnLoadMore = document.createElement("button");
+    // btnLoadMore.innerHTML = 'Cargar mas';
+    // btnLoadMore.addEventListener("click", getPaginatedTrendingMovies);
+    // genericSection.appendChild(btnLoadMore);
 }
 
 async function getMovieById(id) {

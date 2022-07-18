@@ -1,3 +1,6 @@
+// Decide the page for the api
+let page = 1;
+let infiniteScroll;
 
 searchFormBtn.addEventListener("click", () => {
     location.hash = '#search=' + searchFormInput.value;
@@ -23,8 +26,19 @@ arrowBtn.addEventListener("click", () => {
 window.addEventListener('DOMContentLoaded', navigator, false);
 window.addEventListener('hashchange', navigator, false);
 
+// Listen every scroll on my app
+window.addEventListener("scroll", infiniteScroll, false);
+
+
 function navigator() {
     console.log({ location });
+
+    // Como cada vez que navegemos se va a crear un distinto infScroll,
+    // para evitar tener mas de los necesarios, lo removemos 
+    if (infiniteScroll) {
+        window.removeEventListener("scroll", infiniteScroll, { passive: false });
+        infiniteScroll = undefined;
+    }
 
     if (location.hash.startsWith('#trends')) {
         trendsPage();
@@ -40,6 +54,11 @@ function navigator() {
     // scroll Top, en algunos navegadores no funciana
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
+
+    // Le agregamo lo que haya agarrado la funcion que haya agarrado la var
+    // en la navegacion y la agregamos al event listener
+    infiniteScroll && window.addEventListener("scroll", infiniteScroll, { passive: false });
+
 }
 
 
@@ -80,6 +99,9 @@ function trendsPage() {
     headerCategoryTitle.innerHTML = "Trending"
 
     getTrendingMovies();
+
+    // We tell to infinite scroll in what page i am
+    infiniteScroll = getPaginatedTrendingMovies;
 }
 function searchPage() {
     console.log('Search!!!');
