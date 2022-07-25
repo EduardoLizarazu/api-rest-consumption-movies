@@ -35,10 +35,6 @@ function createMovies(movies, container, { lazyLoad = false, clean=true } = {}) 
         movieContainer.classList.add('movie-container');
 
         // Movie details
-        movieContainer.addEventListener("click", () => {
-            location.hash = "#movie=" + movie.id;
-        });
-
         const movieImg = document.createElement('img');
         movieImg.classList.add('movie-img');
         movieImg.setAttribute('alt', movie.title);
@@ -46,14 +42,26 @@ function createMovies(movies, container, { lazyLoad = false, clean=true } = {}) 
             lazyLoad ? 'data-src' : 'src', 
             'http://image.tmdb.org/t/p/w300/' + movie.poster_path
         );
+        movieImg.addEventListener("click", () => {
+            location.hash = "#movie=" + movie.id;
+        });
         movieImg.addEventListener("error", () => {
             movieImg.setAttribute("src", "../Assets/img/img-404.jpg");
+        });
+
+        // Liked Button
+        const movieBtn = document.createElement("button");
+        movieBtn.classList.add("movie-btn");
+        movieBtn.addEventListener("click", () => {
+            movieBtn.classList.toggle("movie-btn---liked");
+            // DEBERIAMOS AGREGAR LA PELICULA EN LS
         });
 
         // Observe
         lazyLoad && lazyLoading.observe(movieImg);
 
         movieContainer.appendChild(movieImg);
+        movieContainer.appendChild(movieBtn);
         container.appendChild(movieContainer);
 
     });
