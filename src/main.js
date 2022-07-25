@@ -1,3 +1,5 @@
+// Data
+
 const api = axios.create({
     baseURL : 'https://api.themoviedb.org/3/',
     headers : {
@@ -8,7 +10,25 @@ const api = axios.create({
     }
 });
 
+// Nos devuelve todo lo guardado en ese lugar en LS
+function likedMovieList() {
+    const item = JSON.parse(localStorage.getItem("liked_movies"));
+    let movies = !!item ? item : {};
+    return movies;
+}
 
+
+function likeMovie(movie) {
+    const likedMovies = likedMovieList();
+    if (likedMovies[movie.id]) {
+        // remover de LS
+        likedMovies[movie.id] = undefined;
+    } else {
+        // agregar la peli de LS
+        likedMovies[movie.id] = movie;
+    }
+    localStorage.setItem("liked_movies", JSON.stringify(likedMovies));
+}
 // Utils
 
 // No ponemos options, porque por defecto nos va a observar todo el documento
@@ -54,7 +74,7 @@ function createMovies(movies, container, { lazyLoad = false, clean=true } = {}) 
         movieBtn.classList.add("movie-btn");
         movieBtn.addEventListener("click", () => {
             movieBtn.classList.toggle("movie-btn---liked");
-            // DEBERIAMOS AGREGAR LA PELICULA EN LS
+            likeMovie(movie);
         });
 
         // Observe
